@@ -27,6 +27,7 @@
 					</div>
 					<!-- single-slide -->
 					<div class="row single-slide">
+
 						<div class="col-lg-5">
 							<div class="banner-content">
 								<h1>AD <br>Poster 2</h1>
