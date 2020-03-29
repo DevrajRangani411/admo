@@ -9,80 +9,62 @@
 <section class="cart_area">
     <div class="container">
         <div class="cart_inner">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Product</th>
 
-                            <th scope="col">Remove</th>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Product</th>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="media">
-                                    <div class="d-flex">
-                                        <img src="img/cart.jpg" alt="">
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Minimalistic shop for multipurpose use</p>
-                                    </div>
+                        <th scope="col">Remove</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+            $qry = "SELECT * FROM wishlist where status=1 ";
+             $result = $con->query($qry);
+            if($result->num_rows > 0){
+
+                while($row = $result->fetch_assoc()){
+
+            ?>
+
+
+                    <tr>
+                        <td>
+
+
+                            <div class="media">
+                                <div class="d-flex">
+                                    <img src="image/product/<?php echo $row['image']; ?>" alt="not found">
                                 </div>
-                            </td>
-
-                            <td>
-                                <div class="product_count">
-                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count input-text qty" type="button"><i class="fa fa-remove" style="font-size:36px;"></i></button>
+                                <div class="media-body">
+                                    <p><?php echo $row['ad_title']; ?></p>
                                 </div>
-                            </td>
 
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="media">
-                                    <div class="d-flex">
-                                        <img src="img/cart.jpg" alt="">
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Minimalistic shop for multipurpose use</p>
-                                    </div>
-                                </div>
-                            </td>
+                            </div>
+                        </td>
 
-                            <td>
-                                <div class="product_count">
-                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count input-text qty" type="button"><i class="fa fa-remove" style="font-size:36px;"></i></button>
+                        <td>
+                            <div class="product_count">
+                                <a href="apis/wishlist.php?ad_id=<?php echo $row['ad_id']?>">
+                                    <i class="fa fa-remove" style="font-size:36px;"></i></a>
+                            </div>
+                        </td>
 
-                                </div>
-                            </td>
+                    </tr>
 
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="media">
-                                    <div class="d-flex">
-                                        <img src="img/cart.jpg" alt="">
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Minimalistic shop for multipurpose use</p>
-                                    </div>
-                                </div>
-                            </td>
+                    <?php
+                }
+            }
+?>
 
-                            <td>
-                                <div class="product_count">
-                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count input-text qty" type="button"><i class="fa fa-remove" style="font-size:36px;"></i></button>
-                                </div>
-                            </td>
+                </tbody>
+            </table>
 
-                        </tr>
 
-                    </tbody>
-                </table>
-            </div>
         </div>
+    </div>
     </div>
 </section>
 <!--================End Cart Area =================-->

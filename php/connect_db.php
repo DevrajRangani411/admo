@@ -8,5 +8,5 @@ if($con->connect_error){
 	echo "Unable to connect.<br/>";
 }
 
-$con->select_db("project");
+$con->select_db("admo");
 ?>
