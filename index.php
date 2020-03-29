@@ -79,7 +79,7 @@
 
                 <div class="col-lg-3 col-md-6">
                     <div class="single-product">
-                        <img class="img-fluid" src="image/product/<?php echo $row['image']; ?>" alt="not foundf">
+                        <img class="img-fluid" src="./img/product/<?php echo $row['ad_image']; ?>" alt="not found">
                         <div class="product-details">
                             <h6><?php echo $row['ad_title']; ?></h6>
                             <div class="price">
@@ -115,9 +115,10 @@
                             </div>
                             <div class="prd-bottom">
 
-                                <a href="cart.php" class="social-info">
+                                <a href="" class="social-info">
                                     <span class="ti-bag"></span>
                                     <p class="hover-text">Wishlist</p>
+
                                 </a>
                                 <a href="" class="social-info">
                                     <span class="lnr lnr-heart"></span>
