@@ -79,7 +79,7 @@
 									<span class="fa fa-star-o" data-rating="4"></span>
 									<span class="fa fa-star-o" data-rating="5"></span>
 									<input type="hidden" name="whatever3" class="rating-value" value="4.1">
-									(03 Reviews)
+									(03 Reviews aniket)
 								</div>
 								<details>
 									<summary class="l-through">View More</summary>
