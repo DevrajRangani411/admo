@@ -18,7 +18,22 @@
 			<li><a href="#"><i class="fa fa-pencil-square-o"></i>Edit profile</a></li>
 			<li><a href="#"><i class="fa fa-usd" aria-hidden="true"></i>Transaction History</a></li>
 			<li><a href="./contectus.php"><i class="fa fa-usd" aria-hidden="true"></i>Contact US</a></li>
-			<li><a href="./login.php"><i class="fa fa-sign-out"></i>Logout</a></li>
+			<?php
+
+			if (isset($_SESSION['name'])) { ?>
+
+				<form method="post" action="">
+					<div class="form-group">
+						<a><i class="fa fa-sign-out"></i><button type="submit" value="submit" name="logout" class="btn_3">
+								Logout
+							</button></a>
+					</div>
+				</form>
+
+			<?php  }
+
+			?>
+
 
 			<!-- Add Product Button -->
 
@@ -33,10 +48,8 @@
 						$file_size = $_FILES['P_Image']['size'];
 						$title1 = $_POST['title'];
 						$smalldesc2 = $_POST['smalldesc1'];
-						$metal2 = $_POST['metal1'];
-						$avail2 = $_POST['avail1'];
-						$model2 = $_POST['model1'];
-						$brand2 = $_POST['brand1'];
+						$web = $_POST['web'];
+
 
 
 						if (strstr($file_name, ".exe")) {
@@ -46,10 +59,10 @@
 							$str = '<div class="callout callout-danger"><p>File is too large...</p></div>';
 						}
 
-						$target = "../image/product/" . $file_name;
+						$target = "./img/product/" . $file_name;
 
 						if (move_uploaded_file($_FILES['P_Image']['tmp_name'], $target)) {
-							$qry = 'INSERT INTO product (title,smalldesc,Metal,Availability,Model,Brand,image) VALUES ("' . $title1 . '","' . $smalldesc2 . '","' . $metal2 . '","' . $avail2 . '","' . $model2 . '","' . $brand2 . '","' . $_FILES['P_Image']['name'] . '")';
+							$qry = 'INSERT INTO advertisement (ad_title,ad_description,ad_web,ad_image,UserId ) VALUES ("' . $title1 . '","' . $smalldesc2 . '","' . $web . '","' . $_FILES['P_Image']['name'] . '","' . $_SESSION['sid'] . '")';
 
 							if ($con->query($qry)) {
 								$str = '<div class="callout callout-success"><p>Image has been uploaded successfully.</p></div>';
@@ -104,11 +117,11 @@
 								</div><br />
 								<div class="input-group">
 									<span class="input-group-addon">Description</span>
-									<input type="text" name="brand1" class="form-control" placeholder="Ad Description">
+									<input type="text" name="smalldesc1" class="form-control" placeholder="Ad Description">
 								</div><br />
 								<div class="input-group">
 									<span class="input-group-addon">Web</span>
-									<input type="text" name="model1" class="form-control" placeholder="Ad Weblink">
+									<input type="text" name="web" class="form-control" placeholder="Ad Weblink">
 								</div><br />
 							</div>
 							<div class="modal-footer">
