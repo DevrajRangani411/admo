@@ -2,7 +2,7 @@
 $qry="";
 if(isset($_GET['ad_id']) && $_GET['ad_id']!="")
     {
-        $qry = "UPDATE wishlist SET status = 0 WHERE ad_id=".$_GET['ad_id'];
+        $qry = "UPDATE wishlist SET status = 0 WHERE wi_id=".$_GET['ad_id'];
     }
 
 if($qry!=""){

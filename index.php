@@ -115,19 +115,17 @@
                             </div>
                             <div class="prd-bottom">
 
-                                <a href="" class="social-info">
-                                    <span class="ti-bag"></span>
-                                    <p class="hover-text">Wishlist</p>
+                                <a href="apis/inswishlist.php?ad_id=<?php echo $row['ad_id']?>&ad_title=<?php echo $row['ad_title']?>&ad_image=<?php echo $row['ad_image']?>&UserId=<?php echo $_SESSION['sid']?>" class="social-info">
 
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-heart"></span>
-                                    <p class="hover-text">Like</p>
-                                </a>
-                                <a href="" class="social-info">
+                                    <span class="ti-bag"></span>
+                                    <p class="hover-text">Wishlist</p></a>
+
+
+                                <a href="apis/coin.php?UserId=<?php echo $_SESSION['sid']?>&ad_id=<?php echo $row['ad_id']?>" class="social-info">
                                     <span class="lnr lnr-diamond"></span>
                                     <p class="hover-text">Coins</p>
                                 </a>
+
                                 <a href="" class="social-info">
                                     <span class="lnr lnr-move"></span>
                                     <p class="hover-text">Share</p>

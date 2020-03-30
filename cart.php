@@ -36,7 +36,7 @@
 
                             <div class="media">
                                 <div class="d-flex">
-                                    <img src="image/product/<?php echo $row['image']; ?>" alt="not found">
+                                    <img src="img/product/<?php echo $row['ad_image']; ?>" alt="not found" height="100px" width="100px">
                                 </div>
                                 <div class="media-body">
                                     <p><?php echo $row['ad_title']; ?></p>
@@ -47,7 +47,7 @@
 
                         <td>
                             <div class="product_count">
-                                <a href="apis/wishlist.php?ad_id=<?php echo $row['ad_id']?>">
+                                <a href="apis/wishlist.php?ad_id=<?php echo $row['wi_id']?>">
                                     <i class="fa fa-remove" style="font-size:36px;"></i></a>
                             </div>
                         </td>
@@ -65,7 +65,8 @@
 
         </div>
     </div>
-    </div>
+
+
 </section>
 <!--================End Cart Area =================-->
 
