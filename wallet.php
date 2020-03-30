@@ -6,8 +6,14 @@
 <!--================Tracking Box Area =================-->
 <div class="container">
     <section class="tracking_box_area section_gap">
-        <h2> Your Coins</h2>
-        <p>(examplae 1000)</p>
+
+          <?php
+
+            $qry = "SELECT coin from wallet";
+            $result = $con->query($qry);
+            $row = $result->fetch_assoc();
+?>
+        <h2>Your Coins : <?php echo $row['coin'] ?></h2>
         <div class="container">
             <div class="tracking_box_inner">
                 <p>You can withdrow your money from here</p>
