@@ -24,7 +24,7 @@
                     <div class="col-md-12 form-group">
                         <input type="email" class="form-control" id="email" name="email" placeholder="Enter money here" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Billing Email Address'">
                     </div>
-                    <?php if( $row['coin']>11) { ?>
+                    <?php if( $row['coin']>100) { ?>
                     <div class="col-md-12 form-group">
                         <button type="submit" value="submit" class="primary-btn">Claim</button>
                     </div>
