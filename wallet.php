@@ -7,12 +7,12 @@
 <div class="container">
     <section class="tracking_box_area section_gap">
 
-          <?php
+        <?php
 
-            $qry = "SELECT coin from wallet";
+            $qry = "SELECT coin from wallet where UserId ='".$_SESSION['sid']."'";
             $result = $con->query($qry);
             $row = $result->fetch_assoc();
-?>
+           ?>
         <h2>Your Coins : <?php echo $row['coin'] ?></h2>
         <div class="container">
             <div class="tracking_box_inner">
@@ -24,9 +24,24 @@
                     <div class="col-md-12 form-group">
                         <input type="email" class="form-control" id="email" name="email" placeholder="Enter money here" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Billing Email Address'">
                     </div>
+                    <?php if( $row['coin']>11) { ?>
                     <div class="col-md-12 form-group">
-                        <button type="submit" value="submit" class="primary-btn">Pay</button>
+                        <button type="submit" value="submit" class="primary-btn">Claim</button>
                     </div>
+                    <?php
+}
+            else{
+
+
+
+    ?>
+                    <div class="col-md-12 form-group">
+                        <h3>Claim button is atomatic show when your coin is grater than 100.</h3>
+                    </div>
+                    <?php
+            }
+            ?>
+
                 </form>
             </div>
         </div>
