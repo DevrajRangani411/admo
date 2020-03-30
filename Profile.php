@@ -18,8 +18,17 @@
 			<li><a href="#"><i class="fa fa-pencil-square-o"></i>Edit profile</a></li>
 			<li><a href="#"><i class="fa fa-usd" aria-hidden="true"></i>Transaction History</a></li>
 			<li><a href="./contectus.php"><i class="fa fa-usd" aria-hidden="true"></i>Contact US</a></li>
+
 			<?php
 
+            $qry = "SELECT UserId from users ";
+            $result = $con->query($qry);
+            $row = $result->fetch_assoc();
+           ?>
+             <?php if( $row['UserId']==1) { ?>
+			<li><a href="./admin.php"><i class="fa fa-usd" aria-hidden="true"></i>Admin</a></li>
+            <?php } ?>
+			<?php
 			if (isset($_SESSION['name'])) { ?>
 
 				<form method="post" action="">

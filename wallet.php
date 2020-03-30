@@ -11,7 +11,7 @@
 
             $qry = "SELECT coin from wallet where UserId ='".$_SESSION['sid']."'";
             $result = $con->query($qry);
-            $row = $result->fetch_assoc();
+            //$row = $result->fetch_assoc();
            ?>
         <h2>Your Coins : <?php echo $row['coin'] ?></h2>
         <div class="container">

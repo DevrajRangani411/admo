@@ -69,7 +69,7 @@
                 <!-- single product -->
                 <?php
 
-            $qry = "SELECT * FROM advertisement";
+            $qry = "SELECT * FROM advertisement where ad_approved=1";
              $result = $con->query($qry);
             if($result->num_rows > 0){
 
