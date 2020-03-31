@@ -1,32 +1,36 @@
-
-h1, h2, h3, h4, h5, h6 {
-	margin: 0;
-	padding: 0;
-	line-height: .9;
-	font-weight: 700;
-	color: #333;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  line-height: 0.9;
+  font-weight: 700;
+  color: #333;
 }
-.profile-block{
-	margin:30px;
-	position:relative;
-	overflow:hidden;
+.profile-block {
+  margin: 30px;
+  position: relative;
+  overflow: hidden;
   max-width: 300px;
   padding-top: 80px;
-	}
+}
 .profile-block .user-heading {
-  background: #c5251e none repeat scroll 0 0;
+  background: #ff4500 none repeat scroll 0 0;
   border-radius: 4px 4px 0 0;
   color: #fff;
   padding: 20px;
   text-align: center;
 }
 .profile-block .user-heading a img {
-	border-radius: 50%;
-	margin:auto auto 10px;
-	display: block;
-	height: 140px;
-	width: 140px;
-	border: 10px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  margin: auto auto 10px;
+  display: block;
+  height: 140px;
+  width: 140px;
+  border: 10px solid rgba(255, 255, 255, 0.3);
 }
 .profile-block .user-heading h1 {
   color: #fff;
@@ -42,17 +46,17 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0;
   text-align: center;
 }
-.profile-block ul{
-	padding:0;
-	margin:0;
-	}
+.profile-block ul {
+  padding: 0;
+  margin: 0;
+}
 .profile-block ul > li {
-  border-bottom: 1px solid #ddd;
+  /* border-bottom: 1px solid #ddd; */
   line-height: 30px;
   margin-top: 0;
 }
 .profile-block .nav > li > a {
-  background: #e7e7e7;
+  /* background: #e7e7e7; */
   border-radius: 0;
   color: #000;
   display: block;
@@ -67,10 +71,26 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 16px;
   padding-right: 10px;
 }
-.profile-block ul > li > a:hover, 
-.profile-block ul > li > a:focus, 
+.profile-block ul > li > a:hover,
+.profile-block ul > li > a:focus,
 .profile-block ul li.active a {
   background: #fff !important;
   border-radius: 0;
   color: #000 !important;
+}
+button {
+  color: #494949 !important;
+  text-transform: uppercase;
+  background: #ff662e;
+  padding: 13px;
+  border: 2px solid #20bf6b !important;
+  border-radius: 6px;
+  display: inline-block;
+  transition: all 0.3s ease 0s;
+}
+button:hover {
+  color: #494949 !important;
+  border-radius: 50fpx;
+  border-color: #494949 !important;
+  transition: all 0.3s ease 0s;
 }

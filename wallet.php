@@ -17,26 +17,31 @@
         <div class="container">
             <div class="tracking_box_inner">
                 <p>You can withdrow your money from here</p>
-
                 <?php
 					if (isset($_POST['submit'])) {
-						$web = $_POST['web'];
+						$coin = $_POST['coin'];
                     }
                 ?>
 
-                <form class="row tracking_form" action="#" method="post" novalidate="novalidate">
+
+                <form class="row tracking_form" action="" method="post" novalidate="novalidate">
                     <div class="col-md-12 form-group">
-                        <input type="text" class="form-control" id="order" name="order" placeholder="Paytam Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Order ID'">
+                        <input type="text" class="form-control" id="order" name="order" placeholder="Paytam Number" onfocus="this.placeholder = ''">
                     </div>
                     <div class="col-md-12 form-group">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter money here" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Billing Email Address'">
+                        <input type="email" class="form-control" id="email" name="coin" placeholder="Enter money here" onfocus="this.placeholder = ''">
                     </div>
+
+
                     <?php if( $row['coin']>11) { ?>
-                     <a href="apis/claim.php?UserId=<?php echo $_SESSION['sid']?>&coin=<?php echo $web ?>" >
+
+
                     <div class="col-md-12 form-group">
-                        <button type="submit" value="submit" class="primary-btn">Claim</button>
+                        <a href="apis/claimapi.php?UserId=<?php echo $_SESSION['sid']?>&coin=<?php  $coin ?>">
+                            <button type="submit" value="submit" class="primary-btn">Claim</button>
+                        </a>
                     </div>
-                    </a>
+
                     <?php
 }
             else{
