@@ -130,6 +130,7 @@
                                     <span class="lnr lnr-move"></span>
                                     <p class="hover-text">Share</p>
                                 </a>
+                     <a href="https://api.whatsapp.com/send?&text=Look At This Attractive Offer. ">Share To WhatsApp</a>
                             </div>
                         </div>
                     </div>

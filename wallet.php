@@ -1,5 +1,28 @@
 <?php include('./php/header.php') ?>
+<?php
+if(isset($_POST['claim']))
+{
+    if($_POST['coin']>=100){
+    $qry1="select * from wallet where UserId='".$_SESSION['sid']."'";
+    $result=$con->query($qry1);
+    $row=$result->fetch_assoc();
+    if($row['coin'] >= $_POST['coin']){
+    $remain=$row['coin']-$_POST['coin'];
+     $qry = 'INSERT INTO claim (UserId,coin) VALUES ("' .$_SESSION['sid'] .    '","'  . $_POST['coin'] . '")';
+        $con->query($qry);
 
+        $qry3="update wallet set coin=$remain , transection_history= '".$_POST['coin']."' where UserId='".$_SESSION['sid'] ."'";
+        $con->query($qry3);
+
+
+}
+    }
+    else{
+        echo "minimum amount100 required";
+    }
+}
+
+?>
 
 <!-- Collect the nav links, forms, and other content for toggling -->
 
@@ -17,30 +40,30 @@
         <div class="container">
             <div class="tracking_box_inner">
                 <p>You can withdrow your money from here</p>
+
                 <?php
 					if (isset($_POST['submit'])) {
 						$coin = $_POST['coin'];
                     }
                 ?>
 
-
-                <form class="row tracking_form" action="" method="post" novalidate="novalidate">
+                <form class="row tracking_form" action="#" method="post" novalidate="novalidate">
                     <div class="col-md-12 form-group">
-                        <input type="text" class="form-control" id="order" name="order" placeholder="Paytam Number" onfocus="this.placeholder = ''">
+                        <input type="text" class="form-control" id="order" name="order" placeholder="Paytam Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Paytm Number'">
                     </div>
                     <div class="col-md-12 form-group">
-                        <input type="email" class="form-control" id="email" name="coin" placeholder="Enter money here" onfocus="this.placeholder = ''">
+                        <input type="email" class="form-control" id="email" name="coin" placeholder="Enter money here" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter money for claim'">
                     </div>
 
-
-                    <?php if( $row['coin']>11) { ?>
-
-
+                                <?php if( $row['coin']>10) { ?>
                     <div class="col-md-12 form-group">
-                        <a href="apis/claimapi.php?UserId=<?php echo $_SESSION['sid']?>&coin=<?php  $coin ?>">
-                            <button type="submit" value="submit" class="primary-btn">Claim</button>
-                        </a>
-                    </div>
+
+
+       <button type="submit" value="submit" class="primary-btn" name="claim">Claim</button>
+
+                             </div>
+
+
 
                     <?php
 }
@@ -52,6 +75,7 @@
                     <div class="col-md-12 form-group">
                         <h3>Claim button is atomatic show when your coin is grater than 100.</h3>
                     </div>
+
                     <?php
             }
             ?>
