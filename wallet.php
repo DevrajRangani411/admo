@@ -9,14 +9,21 @@
 
         <?php
 
-            $qry = "SELECT coin from wallet where UserId ='".$_SESSION['sid']."'";
+            $qry = "SELECT * from wallet where UserId ='".$_SESSION['sid']."'";
             $result = $con->query($qry);
-            //$row = $result->fetch_assoc();
+            $row = $result->fetch_assoc();
            ?>
         <h2>Your Coins : <?php echo $row['coin'] ?></h2>
         <div class="container">
             <div class="tracking_box_inner">
                 <p>You can withdrow your money from here</p>
+
+                <?php
+					if (isset($_POST['submit'])) {
+						$web = $_POST['web'];
+                    }
+                ?>
+
                 <form class="row tracking_form" action="#" method="post" novalidate="novalidate">
                     <div class="col-md-12 form-group">
                         <input type="text" class="form-control" id="order" name="order" placeholder="Paytam Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Order ID'">
@@ -25,9 +32,11 @@
                         <input type="email" class="form-control" id="email" name="email" placeholder="Enter money here" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Billing Email Address'">
                     </div>
                     <?php if( $row['coin']>11) { ?>
+                     <a href="apis/claim.php?UserId=<?php echo $_SESSION['sid']?>&coin=<?php echo $web ?>" >
                     <div class="col-md-12 form-group">
                         <button type="submit" value="submit" class="primary-btn">Claim</button>
                     </div>
+                    </a>
                     <?php
 }
             else{
