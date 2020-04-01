@@ -1,14 +1,31 @@
 <?php include('./php/header.php') ?>
+
+
 <?php
 if(isset($_POST['claim']))
 {
+
+    function random_strings($length_of_string)
+{
+
+    // String of all alphanumeric character
+    $str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+
+    // Shufle the $str_result and returns substring
+    // of specified length
+    return substr(str_shuffle($str_result),
+                       0, $length_of_string);
+}
+
     if($_POST['coin']>=100){
     $qry1="select * from wallet where UserId='".$_SESSION['sid']."'";
     $result=$con->query($qry1);
     $row=$result->fetch_assoc();
+    $random=random_strings(8);
+
     if($row['coin'] >= $_POST['coin']){
     $remain=$row['coin']-$_POST['coin'];
-     $qry = 'INSERT INTO claim (UserId,coin) VALUES ("' .$_SESSION['sid'] .    '","'  . $_POST['coin'] . '")';
+     $qry = 'INSERT INTO claim (UserId,coin,voucher) VALUES ("' .$_SESSION['sid'] .    '","'  . $_POST['coin'] . '","'.$random.'")';
         $con->query($qry);
 
         $qry3="update wallet set coin=$remain , transection_history= '".$_POST['coin']."' where UserId='".$_SESSION['sid'] ."'";
@@ -32,7 +49,7 @@ if(isset($_POST['claim']))
 
         <?php
 
-            $qry = "SELECT coin from wallet where UserId ='".$_SESSION['sid']."'";
+            $qry = "SELECT * from wallet where UserId ='".$_SESSION['sid']."'";
             $result = $con->query($qry);
             $row = $result->fetch_assoc();
            ?>
@@ -55,13 +72,14 @@ if(isset($_POST['claim']))
                         <input type="email" class="form-control" id="email" name="coin" placeholder="Enter money here" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter money for claim'">
                     </div>
 
-                                <?php if( $row['coin']>10) { ?>
+                    <?php if( $row['coin']>10) { ?>
                     <div class="col-md-12 form-group">
 
 
-       <button type="submit" value="submit" class="primary-btn" name="claim">Claim</button>
+                        <button type="submit" value="submit" class="primary-btn" name="claim">Claim</button>
 
-                             </div>
+                    </div>
+
 
 
                     <?php

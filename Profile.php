@@ -5,42 +5,155 @@
 
 <!-- End Banner Area -->
 
+<br />
+<br /><br /><br />
+<!--================Single Product Area =================-->
+<?php
+if(isset($_POST['updateuser'])){
 
-<div class="profile-block">
-	<div class="panel text-center">
-		<div class="user-heading"> <a href="#"><img src="img/l1.jpg" alt="" title=""></a>
-			<h1>ADMO</h1>
-			<p>ADMO1998@gmail.com</p>
-			<p>Wallet Balance $50.00</p>
-		</div>
-		<ul class="nav nav-pills nav-stacked">
-			<li class="active"><a href="#"><i class="fa fa-user"></i>Profile</a></li>
-			<li><a href="#"><i class="fa fa-pencil-square-o"></i>Edit profile</a></li>
-			<li><a href="#"><i class="fa fa-usd" aria-hidden="true"></i>Transaction History</a></li>
-			<li><a href="./contectus.php"><i class="fa fa-usd" aria-hidden="true"></i>Contact US</a></li>
-			<?php
+    $qry3="update users set  FirstName='".$_POST['fname']."' ,LastName='".$_POST['lname']."' ,MobileNumber='".$_POST['mno']."',EmailAddress='".$_POST['email']."' where EmailAddress='".$_SESSION['Email']."'";
+   if($con->query($qry3)){
+       $_SESSION['Email']=$_POST['email'];
 
-			if (isset($_SESSION['name'])) { ?>
+   }}
+?>
 
-				<form method="post" action="">
-					<div class="form-group">
-						<a><i class="fa fa-sign-out"></i><button type="submit" value="submit" name="logout" class="btn_3">
-								Logout
-							</button></a>
-					</div>
-				</form>
+<div class="container">
+    <div class="row justify-content-center">
+        <?php
+                $qry = "SELECT * FROM users where UserId='".$_SESSION['sid']."'";
+//                $qry1 = "SELECT * FROM  appartment where AppartmentId='".$_SESSION['a_id']."'";
+//                   $result1=$con->query($qry1);
+//                    $row1 = $result1->fetch_assoc();
+                $result = $con->query($qry);
+                if($result->num_rows > 0){
+                    $row = $result->fetch_assoc();
+                }
+            ?>
+        <div class="col-lg-8">
+            <div class="single_product_text text-center">
+                <br><br>
 
-			<?php  }
+
+                <div class="card card border-secondary">
+
+
+                    <div class="card-body">
+
+                        <h5 class="card-title">User No - <?php echo $row['UserId'] ?></h5>
+                        <strong>
+                            <p><?php echo $row['FirstName'];echo "  ";echo $row['LastName']  ?></p>
+                        </strong>
+
+                        <strong>
+                            <p>Email Address : <?php echo $row['EmailAddress']?></p>
+                        </strong>
+
+                        <strong>
+                            <p>
+                                <b>Contact Detail: <?php echo $row['MobileNumber'] ?></b></p>
+                        </strong>
+                        <div class="box-tools"><br>
+                            <button class="btn_3" data-toggle="modal" data-target="#modal-new-event"><i class="fa fa-pencil-square-o"></i> Edit</button>
+                        </div><br/>
+                        <?php
+
+           // $qry = "SELECT * from users ";
+            //$result = $con->query($qry);
+           // $row = $result->fetch_assoc();
+           ?>
+                        <?php if( $row['UserId']== '1' && $row['EmailAddress']=="admin@admo.com") { ?>
+                        <font size="5">
+                        <a href="./admin.php"><i class="fa fa-user" aria-hidden="true" ></i> Admin</a>
+                        <a href="./payout.php"><i class="fa fa-doller" aria-hidden="true" ></i> Payout</a>
+                        </font>
+                        <?php } ?>
+                        <?php
+                        if (isset($_SESSION['name'])) { ?>
+
+                        <form method="post" action="">
+                            <div class="form-group">
+                                <br/>
+                                <a><button type="submit" value="submit" name="logout" class="btn_3">
+                                      <i class="fa fa-sign-out"></i>  Logout
+                                    </button></a>
+                            </div>
+                        </form>
+
+                        <?php  }
 
 			?>
 
+                    </div>
+                </div>
+                <br><br>
 
-			<!-- Add Product Button -->
 
-			<div class="content-wrapper">
 
-				<section class="content container-fluid">
-					<?php
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal-new-event">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title">Update User Detail</h4>
+            </div>
+            <form action="" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="form-group p_star">
+                        <span class="input-group-addon">
+                            <h4>First Name </h4>
+                        </span>
+                        <input type="text" class="form-control" name="fname" value="<?php echo $row['FirstName']?>" required>
+                    </div><br>
+                    <div class="form-group p_star">
+                        <span class="input-group-addon">
+                            <h4>Last Name </h4>
+                        </span>
+                        <input type="text" class="form-control" name="lname" value="<?php echo $row['LastName'] ?>" required>
+                    </div><br>
+                    <div class="form-group p_star">
+                        <span class="input-group-addon">
+                            <h4>Mobile Number</h4>
+                        </span>
+                        <input type="text" class="form-control" name="mno" pattern="[0-9]{10}" value="<?php echo $row['MobileNumber'] ?>" required>
+                    </div><br>
+                    <div class="form-group p_star">
+                        <span class="input-group-addon">
+                            <h4>Email Address</h4>
+                        </span>
+                        <input type="email" class="form-control" name="email" value="<?php echo $row['EmailAddress'] ?>" required>
+                    </div><br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" name="updateuser">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!--================End Single Product Area =================-->
+<!-- subscribe part here -->
+
+<!-- subscribe part end -->
+
+<!-- hi-->
+
+<!-- Add Product Button -->
+
+<div class="content-wrapper" align="center">
+
+    <section class="content container-fluid">
+        <?php
 					if (isset($_POST['submit'])) {
 						$str = '';
 						$file_name = date("m-d-H-i") . $_FILES['P_Image']['name'];
@@ -77,67 +190,65 @@
 						echo $str;
 					}
 					?>
-					<div class="row">
-						<div class="col-xs-12">
-							<div class="box">
-								<div class="box-header">
-									<h3 class="box-title"> </h3>
-									<div class="box-tools">
-										<button class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-new-event">Add New AD</button>
-									</div>
-								</div>
-								<!-- /.box-header -->
+        <div class="row" style="text-align:center;">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3  class="box-title"> </h3>
+                        <div class="box-tools" >
+                            <button  class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-new-event" >Add New AD</button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
 
-								<!-- /.box-body -->
-							</div>
-							<!-- /.box -->
-						</div>
-					</div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
 
-				</section>
-			</div>
-
-			<div class="modal fade" id="modal-new-event">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span></button>
-							<h4 class="modal-title">Fill initial details</h4>
-						</div>
-						<form action="" method="post" enctype="multipart/form-data">
-							<div class="modal-body">
-								<div class="input-group">
-									<span class="input-group-addon">Image</span>
-									<input type="file" class="form-control" placeholder="Ad Image" name="P_Image">
-								</div><br />
-								<div class="input-group">
-									<span class="input-group-addon">Title</span>
-									<input type="text" class="form-control" placeholder="Ad Title" name="title">
-								</div><br />
-								<div class="input-group">
-									<span class="input-group-addon">Description</span>
-									<input type="text" name="smalldesc1" class="form-control" placeholder="Ad Description">
-								</div><br />
-								<div class="input-group">
-									<span class="input-group-addon">Web</span>
-									<input type="text" name="web" class="form-control" placeholder="Ad Weblink">
-								</div><br />
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
-								<button type="submit" class="btn btn-primary" name="submit">Submit AD</button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-
-
-			<!-- End Add Product Button  -->
-		</ul>
-	</div>
+    </section>
 </div>
+
+<div class="modal fade" id="modal-new-event">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Fill initial details</h4>
+            </div>
+            <form action="" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="input-group">
+                        <span class="input-group-addon">Image</span>
+                        <input type="file" class="form-control" placeholder="Ad Image" name="P_Image">
+                    </div><br />
+                    <div class="input-group">
+                        <span class="input-group-addon">Title</span>
+                        <input type="text" class="form-control" placeholder="Ad Title" name="title">
+                    </div><br />
+                    <div class="input-group">
+                        <span class="input-group-addon">Description</span>
+                        <input type="text" name="smalldesc1" class="form-control" placeholder="Ad Description">
+                    </div><br />
+                    <div class="input-group">
+                        <span class="input-group-addon">Web</span>
+                        <input type="text" name="web" class="form-control" placeholder="Ad Weblink">
+                    </div><br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" name="submit">Submit AD</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- End Add Product Button  -->
+
 
 <!--Footer-->
 
